@@ -1,0 +1,19 @@
+<div *ngFor="let project of projects" class="card" [ngStyle]="{ 'background-image': 'url(../../../assets/images/default.png)' }">
+  <div class="card-text">
+    <h3 class="card-title">{{ project.Title }}</h3>
+    <p class="card-description">{{ project.Description }}</p>
+    <p class="card-author">Author: {{ project.Author.FirstName + " "  + project.Author.LastName}}</p>
+    <p class="card-deadline" *ngIf="project.EndDate">Deadline: {{ project.EndDate | date:'d MMMM, y' }}</p>
+    <div class="domain-list">
+      <span *ngFor="let domain of project.Domains">
+        <p-tag  severity="secondary" [value]="domain.Name  "></p-tag> &nbsp;
+      </span>
+    </div>
+  </div>
+  <div class="card-date">
+    {{ project.CreatedDate | date:'d MMMM, y' }}
+  </div>
+  <div class="card-status">
+    {{ project.ProjectStatus.Status }}
+  </div>
+</div>

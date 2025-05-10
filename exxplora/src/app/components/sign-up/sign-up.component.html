@@ -1,0 +1,59 @@
+<body>
+<div class="sign-up-form">
+  <form #signUpForm="ngForm" (ngSubmit)="handleSubmit(signUpForm)" novalidate>
+    <div class="name">
+      <div class="firstname">
+        <span class="label">First Name</span>
+        <input type="text" name="firstName" placeholder="e.g. Rianul" pInputText class="input" [(ngModel)]="user.firstName" #firstName="ngModel" required />
+        <div *ngIf="firstName.invalid && firstName.dirty" class="error-message">
+          <small *ngIf="firstName.errors?.['required']">First Name is required</small>
+        </div>
+      </div>
+      <div class="lastname">
+        <span class="label">Last Name</span>
+        <input type="text" name="lastName" placeholder="e.g. Amin" pInputText class="input" [(ngModel)]="user.lastName" #lastName="ngModel" required />
+        <div *ngIf="lastName.invalid && lastName.dirty" class="error-message">
+          <small *ngIf="lastName.errors?.['required']">Last Name is required</small>
+        </div>
+      </div>
+    </div>
+    <div class="email">
+      <span class="label">Email</span>
+      <input type="email" name="email" placeholder="e.g. rianulamin.r@gmail.com" pInputText class="input" [(ngModel)]="user.email" #email="ngModel" required email />
+      <div *ngIf="email.invalid && email.dirty" class="error-message">
+        <small *ngIf="email.errors?.['required']">Email is required</small>
+        <small *ngIf="email.errors?.['email']">Invalid email address</small>
+      </div>
+    </div>
+    <div class="password">
+      <span class="label">Password</span>
+      <input type="password" name="password" placeholder="4+ characters" pInputText class="input" [(ngModel)]="user.password" #password="ngModel" required minlength="4" />
+      <div *ngIf="password.invalid && password.dirty" class="error-message">
+        <small *ngIf="password.errors?.['required']">Password is required</small>
+        <small *ngIf="password.errors?.['minlength']">Password must be at least 4 characters long</small>
+      </div>
+    </div>
+    <div class="confirm-password">
+      <span class="label">Confirm Password</span>
+      <input type="password" name="confirmPassword" placeholder="Re-enter password" pInputText class="input" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" required />
+      <div *ngIf="confirmPassword.invalid && confirmPassword.dirty" class="error-message">
+        <small *ngIf="!passwordsMatch()">Passwords do not match</small>
+      </div>
+    </div>
+    <span class="agreement-text">By clicking Agree & Join, you agree to the Exxplora User Agreement, Privacy Policy, and Cookie Policy.</span>
+    <div class="buttons">
+      <div style="margin-bottom: 20px;">
+        <p-button type="submit" label="Agree & Join" [style]="{width: '100%'}" [rounded]="true" [disabled]="signUpForm.invalid"></p-button>
+      </div>
+    </div>
+    <div class="divider">
+      <span class="divider-text">or</span>
+    </div>
+    <div class="signin-option">
+      <span>Already an Exxplorer? <a routerLink="/sign-in">Sign in now</a></span>
+    </div>
+  </form>
+</div>  
+</body>
+
+<p-toast />

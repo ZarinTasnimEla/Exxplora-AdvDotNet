@@ -1,0 +1,33 @@
+body, html {
+    margin: 0;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    padding: 10px; /* Add padding to the content for spacing */
+    box-sizing: border-box; /* Include padding in total width */
+}
+
+app-left-menu {
+    flex: 0 0 200px; 
+    margin-right: 10px; /* Spacing to the right of left menu */
+}
+
+app-main-panel {
+    flex: 1; 
+    margin: 0 10px;
+    overflow: hidden;
+}
+
+app-right-menu {
+    flex: 0 0 200px;
+    margin-left: 10px; 
+}

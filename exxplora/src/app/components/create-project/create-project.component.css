@@ -1,0 +1,60 @@
+.create-project-form {
+    position: relative;
+    left: 25%;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    padding: 40px;
+  }
+  
+  .title, .description, .deadline {
+    margin-bottom: 25px;
+  }
+  
+  .input {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  
+  .buttons {
+    margin-top: 40px;
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+  }
+  
+  .custom-toggles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.toggle-group {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle-group.active {
+    color: #007ad9;
+    border: 1px #007ad9;
+}
+
+.toggle-group:hover {
+    color: #007ad9;
+}

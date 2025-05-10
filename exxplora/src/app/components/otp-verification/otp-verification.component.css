@@ -1,0 +1,97 @@
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .otp-verification-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh; 
+  }
+  
+  .otp-verification-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .description {
+    font-size: 14px;
+    font-family: sans-serif;
+    margin-bottom: 40px;
+    color: #666;
+  }
+  
+  .otp-verification-form {
+    position: relative;
+  }
+  
+  .otp {
+    text-align: left; 
+  }
+  
+  .custom-otp-input {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    border: 0 none;
+    appearance: none;
+    text-align: center;
+    transition: all 0.2s;
+    background: transparent;
+    border-bottom: 2px solid var(--surface-500);
+    border-radius: 0px;
+
+}
+
+.custom-otp-input:focus {
+    outline: 0 none;
+    box-shadow: none;
+    border-bottom-color: var(--primary-color);
+} 
+  
+  .label {
+    font-size: 14px;
+    font-family: sans-serif;
+  }
+  
+  .buttons {
+    margin-top: 35px;
+  }
+  
+  .resend-option {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+  }
+  
+  .resend-option button {
+    background: none;
+    border: none;
+    color: #0073e6;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+  }
+  
+  .resend-option button[disabled] {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    margin-top: 15px;
+    height: 20px;
+    text-align: left;
+  }
+  
+  .error-message small {
+    color: red;
+    font-size: 12px; 
+  }
+
+  ::ng-deep .p-button-label {
+    font-weight: normal !important;
+  }

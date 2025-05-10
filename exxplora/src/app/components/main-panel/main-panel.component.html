@@ -1,0 +1,16 @@
+<div class="create-project-container">
+  <a [routerLink]="['/create-project']">
+    <textarea class="create-project-textbox" placeholder="Start your project..."></textarea>
+  </a>
+</div>
+<div class="card-container" #cardContainer infiniteScroll [scrollWindow]="false">
+  <app-domain-card 
+    *ngFor="let card of domainCards"
+    [title]="card.Name" 
+    [description]="card.Description" 
+    [backgroundImage]="backgroundImage"
+    [id]="card.Id"
+    >
+  </app-domain-card>
+</div>
+<app-project-card></app-project-card>

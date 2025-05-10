@@ -1,0 +1,93 @@
+body {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.sign-up-form {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.input {
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.label {
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.name {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px; 
+}
+
+.firstname, .lastname {
+  width: 48%; 
+}
+
+.password, .confirm-password, .email {
+  margin-bottom: 25px;
+}
+
+.agreement-text {
+  font-size: 12px;
+  text-align: center;
+  display: block;
+  margin-top: 15px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+::ng-deep .p-button-label {
+  font-weight: normal !important;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.divider-text {
+  flex-shrink: 0;
+  padding: 0 10px;
+  color: #888;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex-grow: 1;
+  background-color: #ddd;
+  height: 1px;
+}
+
+.signin-option {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.signin-option a {
+  color: #0073e6;
+  text-decoration: none;
+}
+
+.error-message {
+  margin-top: 5px;
+  height: 20px; 
+}
+
+.error-message small {
+  color: red;
+  font-size: 12px; 
+}

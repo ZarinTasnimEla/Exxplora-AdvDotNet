@@ -1,0 +1,151 @@
+<body>
+  <div class="card">
+    <p-stepper [(activeStep)]="active">
+      <!-- Step 1: Location and Student Status -->
+      <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+          <button class="header-button">
+            <span class="stepper-circle" [ngClass]="{ 'active': index <= active, 'inactive': index > active }">
+              <i class="pi pi-building"></i>
+            </span>
+          </button>
+        </ng-template>
+        <ng-template pTemplate="content" let-nextCallback="nextCallback">
+          <div class="form-container">
+            <form #step1Form="ngForm" (ngSubmit)="onSubmitStep1(step1Form)">
+              <div class="form-group">
+                <span class="label">Location</span>
+                <input type="text" placeholder="e.g. Dhaka, Bangladesh" pInputText class="input" name="location"
+                  [(ngModel)]="profileSetupInfos.location" required #locationInput="ngModel" />
+                <div *ngIf="locationInput.invalid && locationInput.touched" class="error">Location is mandatory</div>
+              </div>
+
+              <div class="form-group" style="margin-top: 35px;">
+                <div class="form-group">
+                  <span class="label">Are you a student?</span>
+                  <span class="clickable option" *ngIf="!profileSetupInfos.isStudent" (click)="setStudentStatus(true)"
+                    [ngClass]="{ 'active': profileSetupInfos.isStudent }">Yes I am</span>
+                  <span class="clickable option" *ngIf="profileSetupInfos.isStudent" (click)="setStudentStatus(false)"
+                    [ngClass]="{ 'active': !profileSetupInfos.isStudent }">No I am not</span>
+                </div>
+                <div class="form-group" *ngIf="!profileSetupInfos.isStudent" style="margin-top: 25px;">
+                  <span class="label">Organization</span>
+                  <input type="text" placeholder="e.g. Microsoft" pInputText class="input" name="organization"
+                    [(ngModel)]="profileSetupInfos.institution" required #organizationInput="ngModel" />
+                  <div *ngIf="organizationInput.invalid && organizationInput.touched" class="error">Organization is
+                    mandatory if you're not a student</div>
+                </div>
+
+                <div class="form-group" *ngIf="profileSetupInfos.isStudent" style="margin-top: 25px;">
+                  <span class="label">School or College/University</span>
+                  <input type="text" placeholder="e.g. American International University-Bangladesh" pInputText
+                    class="input" name="institution" [(ngModel)]="profileSetupInfos.institution" required #institutionInput="ngModel" />
+                  <div *ngIf="institutionInput.invalid && institutionInput.touched" class="error">Institution is
+                    mandatory for students</div>
+
+                  <div class="years">
+                    <div class="startYear">
+                      <span class="label" style="margin-bottom: 15px;">Start Year</span>
+                      <div style="margin-top: 10px;">
+                        <p-calendar [(ngModel)]="startYear" view="year" dateFormat="yy" name="startYear" required
+                          #startYearInput="ngModel"></p-calendar>
+                      </div>
+                      <div *ngIf="startYearInput.invalid && startYearInput.touched" class="error">Start Year is
+                        mandatory for students</div>
+                    </div>
+                    <div class="endYear">
+                    <span class="label" style="margin-bottom: 15px;">End Year</span>
+                    <div style="margin-top: 10px;">
+                      <p-calendar [(ngModel)]="endYear" view="year" dateFormat="yy" name="endYear" required
+                        #endYearInput="ngModel"></p-calendar>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="button-container">
+                <p-button label="Next" (onClick)="nextCallback.emit()" [disabled]="step1Form.invalid" [text]="true" />
+              </div>
+            </form>
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+
+      <!-- Step 2: Profile Picture -->
+      <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+          <button class="header-button">
+            <span class="stepper-circle" [ngClass]="{ 'active': index <= active, 'inactive': index > active }">
+              <i class="pi pi-user"></i>
+            </span>
+          </button>
+        </ng-template>
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
+          <div class="form-container">
+            <div class="form-group pic">
+              <span class="label">Profile Picture</span>
+              <input type="file" accept="image/*" pInputText class="input" id="selectedFile" style="margin-bottom: 15px; display: none;" (change)="onProfilePicSelected($event)"/>
+                <p-button label="Choose" onclick="document.getElementById('selectedFile').click();" />
+                <small *ngIf="profileSetupInfos.profile" class="file-helper">{{ profileSetupInfos.profile.name }}</small>
+                <small *ngIf="!profileSetupInfos.profile" class="file-helper">No file chosen</small>
+              <small class="file-helper">Recommended size: 400x400px</small>
+            </div>
+          </div>
+          <div class="button-container dual-button-container">
+            <p-button label="Back" severity="secondary" (onClick)="prevCallback.emit()" [text]="true" />
+            <p-button label="Next" (onClick)="nextCallback.emit()" [text]="true" />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+
+      <!-- Step 3: Cover Photo -->
+      <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+          <button class="header-button">
+            <span class="stepper-circle" [ngClass]="{ 'active': index <= active, 'inactive': index > active }">
+              <i class="pi pi-image"></i>
+            </span>
+          </button>
+        </ng-template>
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
+          <div class="form-container">
+            <div class="form-group pic">
+              <span class="label">Cover Photo</span>
+                <input type="file" accept="image/*" pInputText class="input" id="selectedFile2" style="margin-bottom: 15px; display: none;" (change)="onCoverPicSelected($event)"/>
+                <p-button label="Choose" onclick="document.getElementById('selectedFile2').click();"/>
+                <small *ngIf="profileSetupInfos.cover" class="file-helper">{{ profileSetupInfos.cover.name }}</small>
+                <small *ngIf="!profileSetupInfos.cover" class="file-helper">No file chosen</small>
+              <small class="file-helper">Recommended size: 1200x300px</small>
+            </div>
+          </div>
+          <div class="button-container dual-button-container">
+            <p-button label="Back" severity="secondary" (onClick)="prevCallback.emit()" [text]="true" />
+            <p-button [label]="profileSetupInfos.cover ? 'Next' : 'Skip'" (onClick)="nextCallback.emit()" [text]="true" />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+
+      <p-stepperPanel>
+        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+          <button class="header-button">
+            <span class="stepper-circle" [ngClass]="{ 'active': index <= active, 'inactive': index > active }">
+              <i class="pi pi-list-check"></i>
+            </span>
+          </button>
+        </ng-template>
+        <ng-template pTemplate="content" let-prevCallback="prevCallback">
+          <div class="custom-toggles">
+            <div class="toggle-group" *ngFor="let domain of domains"
+              [ngClass]="{ 'active': isDomainSelected(domain.Id) }" (click)="toggleDomainSelection(domain.Id)">
+              {{ domain.Name }}
+            </div>
+          </div>
+          <div class="button-container">
+            <p-button label="Back" severity="secondary" (onClick)="prevCallback.emit()" [text]="true" />
+            <p-button label="Finish" (onClick)="handleSubmit()" [text]="true" />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+    </p-stepper>
+  </div>
+</body>

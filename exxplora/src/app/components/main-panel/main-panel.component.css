@@ -1,0 +1,45 @@
+.card-container {
+  display: flex;
+  flex-wrap: nowrap; 
+  gap: 10px;
+  overflow-x: auto; 
+  height: auto; 
+  padding: 20px;
+  white-space: nowrap;
+  scrollbar-width: none; 
+}
+
+.card-container::-webkit-scrollbar {
+  display: none;
+}
+
+.create-project-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer; /* Cursor turns to pointer to indicate it's clickable */
+}
+
+.create-project-textbox {
+  resize: none;
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #ffffff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  cursor: pointer; /* Make the text area appear clickable */
+  pointer-events: none; /* Prevent user from typing, but still clickable */
+}
+
+.create-project-container:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Add a hover effect */
+}

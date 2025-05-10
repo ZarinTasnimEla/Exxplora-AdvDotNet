@@ -1,0 +1,34 @@
+<body>
+<div class="sign-in-form">
+    <form #signInForm="ngForm" (ngSubmit)="handleSubmit(signInForm)" novalidate>
+    <div class="email">
+        <span class="label">Email</span>
+        <input type="email" name="email" placeholder="e.g. rianulamin.r@gmail.com" pInputText class="input" [(ngModel)]="user.Email" #email="ngModel" required />
+        <div *ngIf="email.invalid && email.dirty" class="error-message">
+        <small *ngIf="email.errors?.['required']">Email is required</small>
+        </div>
+    </div>
+    <div class="password">
+        <span class="label">Password</span>
+        <input type="password" name="password" placeholder="Enter your password" pInputText class="input" [(ngModel)]="user.Password" #password="ngModel" required />
+        <div *ngIf="password.invalid && password.dirty" class="error-message">
+        <small *ngIf="password.errors?.['required']">Password is required</small>
+        </div>
+    </div>
+    <div class="buttons">
+        <div style="margin-bottom: 20px;">
+        <p-button type="submit" label="Sign In" [style]="{width: '100%'}" [rounded]="true" [disabled]="signInForm.invalid"></p-button>
+        </div>
+    </div>
+    <div class="divider">
+        <span class="divider-text">or</span>
+    </div>
+    <div class="signin-option">
+        <span>Don't have an account? <a routerLink="/sign-up">Sign up now</a></span>
+    </div>
+    </form>
+</div>
+</body>
+
+<p-toast />
+  

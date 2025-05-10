@@ -1,0 +1,38 @@
+<div class="otp-verification-wrapper">
+  <div class="otp-verification-container">
+    <p class="description">An OTP has been sent to <span style="color: #0073e6;">{{email}}</span>. Please enter the OTP below to verify your account.</p>
+    <form #otpVerificationForm="ngForm" (ngSubmit)="handleSubmit()" novalidate>
+      <div class="otp-verification-form">
+        <div class="otp">
+          <span class="label">Enter OTP</span>
+          <p-inputOtp [(ngModel)]="otpInput" name="otpInput" required>
+            <ng-template pTemplate="input" let-token let-events="events">
+              <input 
+                pInputText 
+                class="custom-otp-input" 
+                (input)="events.input($event)" 
+                (keydown)="events.keydown($event)" 
+                type="text" 
+                [attr.value]="token" 
+                [maxLength]="1" />
+            </ng-template>
+          </p-inputOtp>
+          <div *ngIf="otpInput === '' && otpVerificationForm.submitted" class="error-message">
+            <small>OTP is required</small>
+          </div>
+        </div>
+        <div class="buttons">
+          <div style="margin-bottom: 20px;">
+            <p-button label="Verify" type="submit" [style]="{width: '100%'}" [rounded]="true"></p-button>
+          </div>
+        </div>
+        <div class="resend-option">
+          <span>Didn't receive the OTP? 
+            <button type="button" (click)="resendOtp()" [disabled]="resendOtpDisabled">Resend OTP</button>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<p-toast />

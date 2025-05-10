@@ -1,0 +1,41 @@
+<div class="create-project-form">
+    <div class="title">
+      <span class="label">Project Title</span>
+      <input type="text" placeholder="Enter project title" class="input" [(ngModel)]="this.createProjectData.title" required />
+    </div>
+    <br>
+    <div class="description">
+      <span class="label">Project Description</span>
+      <textarea rows="5" cols="81" placeholder="Enter project description" class="input" pInputTextarea [autoResize]="true" [(ngModel)]="this.createProjectData.description" required></textarea>
+    </div>
+  
+    <div class="deadline">
+      <span class="label">Project Deadline</span>
+      <div style="margin-top: 15px;">
+        <p-calendar [(ngModel)]="this.createProjectData.endDate" [showIcon]="true" dateFormat="d/m/yy" [style]="{ width: '100%' }"></p-calendar>
+      </div>
+    </div>
+  <br>
+    <div class="related-domains">
+      <span class="label">Related Domains</span>
+      <div class="custom-toggles">
+        <div class="toggle-group" *ngFor="let domain of domains"
+          [ngClass]="{ 'active': isDomainSelected(domain.Id) }" 
+          (click)="toggleDomainSelection(domain.Id)">
+          {{ domain.Name }}
+        </div>
+      </div>
+    </div>
+  
+    <div class="buttons">
+      <div>
+        <p-button [text]="true" label="Submit" severity="success" (onClick)="onSubmit()"></p-button>
+      </div>
+      <div>
+        <p-button [text]="true" label="Cancel" severity="danger" [routerLink]="['/home']"></p-button>
+      </div>
+    </div>
+  </div>
+
+  <p-toast />
+  
